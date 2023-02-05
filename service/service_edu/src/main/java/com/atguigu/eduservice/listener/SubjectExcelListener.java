@@ -53,8 +53,8 @@ public class SubjectExcelListener extends AnalysisEventListener<SubjectData> {
             existTwoSubject = new EduSubject();
             existTwoSubject.setParentId(pid);
             existTwoSubject.setTitle(subjectData.getTwoSubjectName());//二级分类名称
-            existOneSubject.setGmtCreate(new Date());
-            existOneSubject.setGmtModified(new Date());
+            existTwoSubject.setGmtCreate(new Date());
+            existTwoSubject.setGmtModified(new Date());
             subjectService.save(existTwoSubject);
         }
     }
