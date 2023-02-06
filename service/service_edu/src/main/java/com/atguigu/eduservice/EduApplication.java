@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.atguigu"})
+@MapperScan(basePackages = "com.atguigu.eduservice.mapper")
 public class EduApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EduApplication.class, args);
