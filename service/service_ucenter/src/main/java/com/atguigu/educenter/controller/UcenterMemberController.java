@@ -44,5 +44,13 @@ public class UcenterMemberController {
 		UcenterMember byId = memberService.getById(jwtToken);
 		return R.ok().data("userInfo", byId);
 	}
+
+	//查询某一天注册人数
+	@GetMapping("countRegister/{day}")
+	public R countRegister(@PathVariable String day) {
+		Integer count = memberService.countRegisterDay(day);
+		return R.ok().data("countRegister",count);
+	}
+
 }
 

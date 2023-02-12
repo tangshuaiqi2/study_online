@@ -29,9 +29,9 @@ public class MsmController {
 	public R sendMsm(@PathVariable String phone) {
 		//1 从redis获取验证码，如果获取到直接返回
 		String code = redisTemplate.opsForValue().get(phone);
-//		if(!StringUtils.isEmpty(code)) {
-//			return R.ok();
-//		}
+		if(!StringUtils.isEmpty(code)) {
+			return R.ok();
+		}
 		//2 如果redis获取 不到，进行阿里云发送
 		//生成随机值，传递阿里云进行发送
 		code = RandomUtil.getFourBitRandom();

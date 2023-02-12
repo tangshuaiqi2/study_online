@@ -196,6 +196,7 @@ export default {
             this.courseWebVo=response.data.data.courseWebVo,
             this.chapterVideoList=response.data.data.chapterVideoList,
             this.isbuy=response.data.data.isBuy
+            console.log(this.chapterVideoList)
         })
      },
     //生成订单

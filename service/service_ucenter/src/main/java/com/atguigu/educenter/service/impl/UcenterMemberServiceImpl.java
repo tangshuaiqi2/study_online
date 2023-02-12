@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import javax.management.Query;
 import java.util.Date;
 
 /**
@@ -102,5 +101,10 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
 		ucenterMember.setAvatar("http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eoj0hHXhgJNOTSOFsS4uZs8x1ConecaVOB8eIl115xmJZcT4oCicvia7wMEufibKtTLqiaJeanU2Lpg3w/132");
 		baseMapper.insert(ucenterMember);
 		return "true";
+	}
+
+	@Override
+	public Integer countRegisterDay(String day) {
+		return baseMapper.countRegisterDay(day);
 	}
 }

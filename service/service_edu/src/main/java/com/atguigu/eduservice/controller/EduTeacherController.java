@@ -2,8 +2,10 @@ package com.atguigu.eduservice.controller;
 
 
 import com.atguigu.commonutils.R;
+import com.atguigu.eduservice.entity.EduCourse;
 import com.atguigu.eduservice.entity.EduTeacher;
 import com.atguigu.eduservice.entity.vo.TeacherQuery;
+import com.atguigu.eduservice.service.EduCourseService;
 import com.atguigu.eduservice.service.EduTeacherService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -31,6 +33,9 @@ public class EduTeacherController {
 
 	@Autowired
 	private EduTeacherService teacherService;
+
+	@Autowired
+	private EduCourseService courseService;
 
 	@GetMapping("/findAll")
 	public R findAllTeacher(){
@@ -108,5 +113,7 @@ public class EduTeacherController {
 		boolean update = teacherService.updateById(eduTeacher);
 		return R.ok();
 	}
+
+
 }
 

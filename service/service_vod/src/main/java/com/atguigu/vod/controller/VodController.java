@@ -1,10 +1,12 @@
 package com.atguigu.vod.controller;
 
-import com.aliyun.oss.ClientException;
 import com.aliyuncs.DefaultAcsClient;
+import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.vod.model.v20170321.DeleteVideoRequest;
 import com.aliyuncs.vod.model.v20170321.DeleteVideoResponse;
+import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthRequest;
+import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthResponse;
 import com.atguigu.commonutils.R;
 import com.atguigu.vod.Utils.ConstantVodUtils;
 import com.atguigu.vod.Utils.InitVodCilent;
@@ -57,5 +59,28 @@ public class VodController {
     public R deleteBatch(@RequestParam("videoIdList") List<String> videoIdList) {
         vodService.removeMoreAlyVideo(videoIdList);
         return R.ok();
+    }
+
+    @GetMapping("getPlayAuth/{id}")
+    public R getPlayAuth(@PathVariable String id){
+        try {
+        DefaultAcsClient client =
+                InitVodCilent.initVodClient(ConstantVodUtils.ACCESS_KEY_ID, ConstantVodUtils.ACCESS_KEY_SECRET);
+        GetVideoPlayAuthRequest request = new GetVideoPlayAuthRequest();
+
+        request.setVideoId(id);
+
+        GetVideoPlayAuthResponse response = null;
+
+            response = client.getAcsResponse(request);
+
+
+        String playAuth = response.getPlayAuth();
+
+        return R.ok().data("playAuth",playAuth);
+        } catch (ClientException e) {
+            e.printStackTrace();
+            return R.error();
+        }
     }
 }
